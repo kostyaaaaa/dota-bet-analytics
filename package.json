@@ -1,0 +1,20 @@
+{
+  "name": "dota-bet-analytics",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dota2": "^7.0.3",
+    "dotenv": "^16.0.1",
+    "nodemailer": "^6.7.5",
+    "nodemon": "^2.0.16",
+    "twilio": "^3.77.2"
+  },
+  "description": ""
+}
