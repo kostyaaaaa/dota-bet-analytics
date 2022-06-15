@@ -5,7 +5,7 @@ exports.getPlayerHero = async (accountId, heroId) => {
   try {
     const result = await axios.get(`/players/${accountId}/heroes`);
     const playerHeroes = result.data;
-    const heroIndex = playerHeroes.findIndex((h) => +h.hero_id === +heroId);
+    const heroIndex = playerHeroes.findIndex((h) => +h.hero_id === +heroId) + 1;
     const hero = playerHeroes.find((h) => +h.hero_id === +heroId);
     return { ...hero, heroIndex };
   } catch (err) {

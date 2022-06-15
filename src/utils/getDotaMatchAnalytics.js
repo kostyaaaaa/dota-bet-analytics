@@ -38,12 +38,11 @@ const getDotaMatchAnalytics = async (match) => {
       const index =
         allRadiantHeroes.findIndex((h) => +h.hero_id === +player.hero_id) + 1;
 
-      return `${heroName}(pos ${player.fantasy_role}): Solo - Popular ${
-        playerStats.heroIndex
-      } Games ${playerStats.games}, ${(
-        (playerStats.win / playerStats.games) *
-        100
-      ).toFixed(2)}% Team - Popular ${index} Games ${teamInfo.games_played}, ${(
+      return `${heroName} Solo - Popular ${playerStats.heroIndex} Games ${
+        playerStats.games
+      }, ${((playerStats.win / playerStats.games) * 100).toFixed(
+        2
+      )}% Team - Popular ${index} Games ${teamInfo.games_played}, ${(
         (teamInfo.wins / teamInfo.games_played) *
         100
       ).toFixed(1)}%`;
@@ -65,12 +64,11 @@ const getDotaMatchAnalytics = async (match) => {
       const index =
         allDireHeroes.findIndex((h) => h.hero_id === +player.hero_id) + 1;
 
-      return `${heroName}(pos ${player.fantasy_role}): Solo - Popular ${
-        playerStats.heroIndex
-      } Games ${playerStats.games}, ${(
-        (playerStats.win / playerStats.games) *
-        100
-      ).toFixed(2)}% Team - Popular ${index} Games ${teamInfo.games_played}, ${(
+      return `${heroName} Solo - Popular ${playerStats.heroIndex} Games ${
+        playerStats.games
+      }, ${((playerStats.win / playerStats.games) * 100).toFixed(
+        2
+      )}% Team - Popular ${index} Games ${teamInfo.games_played}, ${(
         (teamInfo.wins / teamInfo.games_played) *
         100
       ).toFixed(1)}%`;
