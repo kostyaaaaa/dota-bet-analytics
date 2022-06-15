@@ -12,3 +12,12 @@ exports.getPlayerHero = async (accountId, heroId) => {
     Logger.error(`getPlayerHero, ${err.message}`);
   }
 };
+
+exports.getPlayerById = async (accountId) => {
+  try {
+    const result = await axios.get(`/players/${accountId}`);
+    return result.data;
+  } catch (err) {
+    Logger.error(`getPlayer, ${err.message}`);
+  }
+};
