@@ -54,10 +54,10 @@ const initHandleBarsHelpers = () => {
 
   // Winrate
   Handlebars.registerHelper("isAwesomeWinrate", function (value) {
-    return value >= 70;
+    return value >= 65;
   });
   Handlebars.registerHelper("isGoodWinrate", function (value) {
-    return value < 70 && value >= 55;
+    return value < 65 && value >= 55;
   });
   Handlebars.registerHelper("isNormalWinrate", function (value) {
     return value < 55 && value >= 50;
