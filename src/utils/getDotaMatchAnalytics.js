@@ -44,11 +44,11 @@ const getDotaMatchAnalytics = async (match) => {
   );
 
   const radiantWinRate = currentRadiantHeroes.reduce((acc, hero) => {
-    return +hero.heroStats.winrate || 0 + acc;
+    return (+hero.heroStats.winrate || 0) + acc;
   }, 0);
 
   const direWinRate = currentDireHeroes.reduce((acc, hero) => {
-    return +hero.heroStats.winrate || 0 + acc;
+    return (+hero.heroStats.winrate || 0) + acc;
   }, 0);
 
   const radiantHerosPopular = currentRadiantHeroes.reduce((acc, hero) => {
