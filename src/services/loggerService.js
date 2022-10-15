@@ -7,6 +7,10 @@ const errorLogger = fs.createWriteStream("errors.log", {
   // flags: "a", // 'a' means appending (old data will be preserved)
 });
 
+const statsLogger = fs.createWriteStream("stats.log", {
+  flags: "a", // 'a' means appending (old data will be preserved)
+});
+
 class Logger {
   log(message) {
     if (typeof message === "string") {
@@ -18,6 +22,10 @@ class Logger {
 
   error(message) {
     errorLogger.write(`${new Date()}${message}\n`);
+  }
+
+  stats(data) {
+    statsLogger.write(`${new Date()}\n ${data} \n`);
   }
 }
 

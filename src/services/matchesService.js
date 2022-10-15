@@ -29,8 +29,40 @@ const getAllMatches = async () => {
   }
 };
 
+const getAppStats = async () => {
+  try {
+    const allMatches = await Match.countDocuments({ winTeam: { $ne: "" } });
+    const predictedCorrectlyMatches = await Match.countDocuments({
+      $or: [
+        {
+          $and: [
+            { winTeam: { $ne: "" } },
+            { $expr: { $gt: ["$radiantStats", "$direStats"] } },
+            { $expr: { $eq: ["$winTeam", "$radiantTeamName"] } },
+          ],
+        },
+        {
+          $and: [
+            { $expr: { $gt: ["$direStats", "$radiantStats"] } },
+            { winTeam: { $ne: "" } },
+            { $expr: { $eq: ["$winTeam", "$direTeamName"] } },
+          ],
+        },
+      ],
+    });
+    Logger.stats(
+      `${predictedCorrectlyMatches}/${allMatches}, ${
+        (predictedCorrectlyMatches / allMatches).toFixed(2) * 100
+      }%`
+    );
+  } catch (err) {
+    Logger.error(`getAppStats, ${err.message}`);
+  }
+};
+
 module.exports = {
   createMatch,
   updateMatchById,
   getAllMatches,
+  getAppStats,
 };
