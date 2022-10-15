@@ -9,3 +9,12 @@ exports.getLiveMatches = async () => {
     Logger.error(`getLiveMatches, ${err.message}`);
   }
 };
+
+exports.getMatchById = async (matchId) => {
+  try {
+    const result = await axios.get(`/matches/${matchId}`);
+    return result.data;
+  } catch (err) {
+    Logger.error(`getMatchById, ${err.message}`);
+  }
+};

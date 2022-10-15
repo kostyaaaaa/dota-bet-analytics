@@ -43,6 +43,25 @@ const getDotaMatchAnalytics = async (match) => {
     })
   );
 
+  const radiantWinRate = currentRadiantHeroes.reduce((acc, hero) => {
+    return +hero.heroStats.winrate || 0 + acc;
+  }, 0);
+
+  const direWinRate = currentDireHeroes.reduce((acc, hero) => {
+    return +hero.heroStats.winrate || 0 + acc;
+  }, 0);
+
+  const radiantHerosPopular = currentRadiantHeroes.reduce((acc, hero) => {
+    return 100 / hero.heroStats.heroIndex + acc;
+  }, 0);
+
+  const direHerosPopular = currentDireHeroes.reduce((acc, hero) => {
+    return 100 / hero.heroStats.heroIndex + acc;
+  }, 0);
+
+  const radiantStats = +radiantWinRate * 0.8 + radiantHerosPopular * 0.2;
+  const direStats = +direWinRate * 0.8 + direHerosPopular * 0.2;
+
   return {
     team_name_radiant,
     team_name_dire,
@@ -50,6 +69,8 @@ const getDotaMatchAnalytics = async (match) => {
     dire_score,
     currentRadiantHeroes,
     currentDireHeroes,
+    radiantStats,
+    direStats,
   };
 };
 

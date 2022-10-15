@@ -13,6 +13,7 @@
     "dota2": "^7.0.3",
     "dotenv": "^16.0.1",
     "handlebars": "^4.7.7",
+    "mongoose": "^6.6.5",
     "nodemailer": "^6.7.5",
     "nodemon": "^2.0.16",
     "twilio": "^3.77.2"
