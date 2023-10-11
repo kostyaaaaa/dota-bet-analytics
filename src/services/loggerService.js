@@ -1,13 +1,13 @@
 const fs = require("fs");
-const logger = fs.createWriteStream("logs.log", {
+const logger = fs.createWriteStream("logs/logs.log", {
   // flags: "a", // 'a' means appending (old data will be preserved)
 });
 
-const errorLogger = fs.createWriteStream("errors.log", {
+const errorLogger = fs.createWriteStream("logs/errors.log", {
   // flags: "a", // 'a' means appending (old data will be preserved)
 });
 
-const statsLogger = fs.createWriteStream("stats.log", {
+const statsLogger = fs.createWriteStream("logs/stats.log", {
   flags: "a", // 'a' means appending (old data will be preserved)
 });
 

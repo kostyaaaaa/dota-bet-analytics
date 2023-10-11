@@ -19,11 +19,11 @@ const doHeartBeat = async () => {
       await Promise.all(
         liveProMatches.map(async (match) => {
           const foundedMatch = analysedMatches.find(
-            (m) => m.id === match.match_id
+            (m) => m.id === match.match_id,
           );
           if (!foundedMatch) {
             Logger.log(
-              `Analyse match ${match.match_id} ${match.team_name_radiant} vs ${match.team_name_dire}, ${match.game_time}`
+              `Analyse match ${match.match_id} ${match.team_name_radiant} vs ${match.team_name_dire}, ${match.game_time}`,
             );
             const matchAnalytics = await getDotaMatchAnalytics(match);
             await ReportService.sendReport(matchAnalytics);
@@ -44,7 +44,7 @@ const doHeartBeat = async () => {
                 : foundedMatch.direTeamName,
             });
           }
-        })
+        }),
       );
     }
   } catch (err) {

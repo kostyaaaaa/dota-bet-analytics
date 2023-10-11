@@ -53,7 +53,7 @@ const getAppStats = async () => {
     Logger.stats(
       `${predictedCorrectlyMatches}/${allMatches}, ${
         (predictedCorrectlyMatches / allMatches).toFixed(2) * 100
-      }%`
+      }%`,
     );
   } catch (err) {
     Logger.error(`getAppStats, ${err.message}`);

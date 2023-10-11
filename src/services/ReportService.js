@@ -23,7 +23,7 @@ class ReportService {
   getHTMLTemplate(data) {
     const templateSource = fs.readFileSync(
       path.resolve(__dirname, "../templates/dotaReport.hbs"),
-      "utf8"
+      "utf8",
     );
 
     const templateCompiled = Handlebars.compile(templateSource);

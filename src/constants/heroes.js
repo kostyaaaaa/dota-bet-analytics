@@ -1106,4 +1106,13 @@ module.exports = [
     roles: ["Initiator", "Durable", "Disabler"],
     legs: 2,
   },
+  {
+    id: 138,
+    name: "npc_dota_hero_muerta",
+    localized_name: "Muerta",
+    primary_attr: "int",
+    attack_type: "Ranged",
+    roles: ["Carry", "Nuker", "Disabler"],
+    legs: 2,
+  },
 ];
