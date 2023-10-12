@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 
 const matchesService = require("./services/matchesService");
 
-matchesService.getAppStats();
+mongoose.connection.on('open', async () => {
+    await matchesService.getAppStats();
+    mongoose.connection.close();
+});
 
-mongoose.connection.close();
