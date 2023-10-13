@@ -35,7 +35,7 @@ const doHeartBeat = async () => {
               direStats: matchAnalytics.direStats,
             });
           }
-          if (match.deactivate_time && !foundedMatch.winTeam) {
+          if (match.radiant_win !== undefined && !foundedMatch.winTeam) {
             const matchToUpdate = await getMatchById(foundedMatch.id);
             await matchesService.updateMatchById({
               id: foundedMatch._id,

@@ -17,3 +17,8 @@ To format the code please run:
 ```sh
     npm run prettier
 ```
+
+To update all matches winTeam please run:
+```sh
+    npm run update
+```

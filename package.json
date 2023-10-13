@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nodemon ./src/index.js",
     "stats": "node ./src/getAppStats.js",
+    "update": "node ./src/updateAllMatches.js",
     "prettier": "prettier --write './src/**/*.js'"
   },
   "keywords": [],

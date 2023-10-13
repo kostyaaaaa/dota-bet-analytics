@@ -1,5 +1,6 @@
 const Match = require("../models/matchesModel");
 const Logger = require("./loggerService");
+const { getMatchById } = require("../api/matches");
 
 const createMatch = async (data) => {
   try {
@@ -17,6 +18,26 @@ const updateMatchById = async (data) => {
     await Match.findByIdAndUpdate(id, { winTeam });
   } catch (err) {
     Logger.error(`updateMatchById, ${err.message}`);
+  }
+};
+
+const updateAllMatches = async () => {
+  try {
+    const allMatches = await Match.find({});
+    const matchesWithoutWinner = allMatches.filter((m) => !m.winTeam);
+    await Promise.all(
+      matchesWithoutWinner.map(async (m) => {
+        const match = await getMatchById(m.id);
+        if (match.radiant_win !== undefined) {
+          await updateMatchById({
+            id: m._id,
+            winTeam: match.radiant_win ? m.radiantTeamName : m.direTeamName,
+          });
+        }
+      }),
+    );
+  } catch (err) {
+    Logger.error(`updateAllMatches, ${err.message}`);
   }
 };
 
@@ -63,6 +84,7 @@ const getAppStats = async () => {
 module.exports = {
   createMatch,
   updateMatchById,
+  updateAllMatches,
   getAllMatches,
   getAppStats,
 };
