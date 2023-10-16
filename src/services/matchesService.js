@@ -52,28 +52,47 @@ const getAllMatches = async () => {
 
 const getAppStats = async () => {
   try {
+    const multiplier = 0.95;
     const allMatches = await Match.countDocuments({ winTeam: { $ne: "" } });
     const predictedCorrectlyMatches = await Match.countDocuments({
       $or: [
         {
           $and: [
             { winTeam: { $ne: "" } },
-            { $expr: { $gt: ["$radiantStats", "$direStats"] } },
+            { $expr: { $gt: [{ $multiply: ["$radiantStats", multiplier] }, "$direStats"] } },
             { $expr: { $eq: ["$winTeam", "$radiantTeamName"] } },
           ],
         },
         {
           $and: [
-            { $expr: { $gt: ["$direStats", "$radiantStats"] } },
             { winTeam: { $ne: "" } },
+            { $expr: { $gt: [{ $multiply: ["$direStats", multiplier] }, "$radiantStats"] } },
             { $expr: { $eq: ["$winTeam", "$direTeamName"] } },
           ],
         },
       ],
     });
+    const predictedIncorrectlyMatches = await Match.countDocuments({
+      $or: [
+        {
+          $and: [
+            { winTeam: { $ne: "" } },
+            { $expr: { $gt: [{ $multiply: ["$radiantStats", multiplier] }, "$direStats"] } },
+            { $expr: { $eq: ["$winTeam", "$direTeamName"] } },
+          ],
+        },
+        {
+          $and: [
+            { winTeam: { $ne: "" } },
+            { $expr: { $gt: [{ $multiply: ["$direStats", multiplier] }, "$radiantStats"] } },
+            { $expr: { $eq: ["$winTeam", "$radiantTeamName"] } },
+          ],
+        },
+      ],
+    });
     Logger.stats(
-      `${predictedCorrectlyMatches}/${allMatches}, ${
-        (predictedCorrectlyMatches / allMatches).toFixed(2) * 100
+      `Total: ${allMatches}, ${predictedCorrectlyMatches}/${predictedIncorrectlyMatches + predictedCorrectlyMatches}, ${
+        (predictedCorrectlyMatches / (predictedIncorrectlyMatches + predictedCorrectlyMatches)).toFixed(2) * 100
       }%`,
     );
   } catch (err) {
