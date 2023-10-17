@@ -40,6 +40,8 @@
             Hero
           </th>
           <th>
+          </th>
+          <th>
             Rank
           </th>
           <th>
@@ -55,8 +57,11 @@
         {{#each currentRadiantHeroes}}
           <tr>
             <td>
-                <span class="hero-name">{{heroName}}</span>
-                <img class="hero-img" src={{heroImageLink}} />
+              <span class="hero-name">{{heroName}}</span>
+            </td>
+
+            <td>
+              <img class="hero-img" src={{heroImageLink}} />
             </td>
 
             {{#if (isAwesomeRank playerStats.leaderboard_rank)}}
@@ -188,9 +193,12 @@
         </tr>
         {{#each currentDireHeroes}}
           <tr>
+             <td>
+              <span class="hero-name">{{heroName}}</span>
+            </td>
+            
             <td>
-                <span class="hero-name">{{heroName}}</span>
-                <img class="hero-img" src={{heroImageLink}} />
+              <img class="hero-img" src={{heroImageLink}} />
             </td>
 
             {{#if (isAwesomeRank playerStats.leaderboard_rank)}}
