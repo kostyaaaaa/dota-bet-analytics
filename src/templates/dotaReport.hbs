@@ -190,9 +190,10 @@
         </tr>
         {{#each currentDireHeroes}}
           <tr>
-            <td>
-              {{heroName}}
-            </td>
+            <div class="hero">
+                {{heroName}}
+                <img class="hero-img" src={{heroImageLink}} />
+            </div>
             {{#if (isAwesomeRank playerStats.leaderboard_rank)}}
               <td class="awesome">
                 {{playerStats.leaderboard_rank}}
