@@ -6,7 +6,8 @@
     "start": "nodemon ./src/index.js",
     "stats": "node ./src/getAppStats.js",
     "update": "node ./src/updateAllMatches.js",
-    "prettier": "prettier --write './src/**/*.js'"
+    "prettier": "prettier --write './src/**/*.js'",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
   },
   "description": "",
   "devDependencies": {
+    "husky": "^8.0.3",
     "prettier": "3.0.3"
   }
 }

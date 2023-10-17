@@ -59,14 +59,28 @@ const getAppStats = async () => {
         {
           $and: [
             { winTeam: { $ne: "" } },
-            { $expr: { $gt: [{ $multiply: ["$radiantStats", multiplier] }, "$direStats"] } },
+            {
+              $expr: {
+                $gt: [
+                  { $multiply: ["$radiantStats", multiplier] },
+                  "$direStats",
+                ],
+              },
+            },
             { $expr: { $eq: ["$winTeam", "$radiantTeamName"] } },
           ],
         },
         {
           $and: [
             { winTeam: { $ne: "" } },
-            { $expr: { $gt: [{ $multiply: ["$direStats", multiplier] }, "$radiantStats"] } },
+            {
+              $expr: {
+                $gt: [
+                  { $multiply: ["$direStats", multiplier] },
+                  "$radiantStats",
+                ],
+              },
+            },
             { $expr: { $eq: ["$winTeam", "$direTeamName"] } },
           ],
         },
@@ -77,22 +91,41 @@ const getAppStats = async () => {
         {
           $and: [
             { winTeam: { $ne: "" } },
-            { $expr: { $gt: [{ $multiply: ["$radiantStats", multiplier] }, "$direStats"] } },
+            {
+              $expr: {
+                $gt: [
+                  { $multiply: ["$radiantStats", multiplier] },
+                  "$direStats",
+                ],
+              },
+            },
             { $expr: { $eq: ["$winTeam", "$direTeamName"] } },
           ],
         },
         {
           $and: [
             { winTeam: { $ne: "" } },
-            { $expr: { $gt: [{ $multiply: ["$direStats", multiplier] }, "$radiantStats"] } },
+            {
+              $expr: {
+                $gt: [
+                  { $multiply: ["$direStats", multiplier] },
+                  "$radiantStats",
+                ],
+              },
+            },
             { $expr: { $eq: ["$winTeam", "$radiantTeamName"] } },
           ],
         },
       ],
     });
     Logger.stats(
-      `Total: ${allMatches}, ${predictedCorrectlyMatches}/${predictedIncorrectlyMatches + predictedCorrectlyMatches}, ${
-        (predictedCorrectlyMatches / (predictedIncorrectlyMatches + predictedCorrectlyMatches)).toFixed(2) * 100
+      `Total: ${allMatches}, ${predictedCorrectlyMatches}/${
+        predictedIncorrectlyMatches + predictedCorrectlyMatches
+      }, ${
+        (
+          predictedCorrectlyMatches /
+          (predictedIncorrectlyMatches + predictedCorrectlyMatches)
+        ).toFixed(2) * 100
       }%`,
     );
   } catch (err) {
