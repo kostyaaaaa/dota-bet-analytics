@@ -21,25 +21,25 @@ const getDotaMatchAnalytics = async (match) => {
 
   const currentRadiantHeroes = await Promise.all(
     currentRadiantPlayers.map(async (player) => {
-      const heroName = ALL_HEROES.find(
-        (h) => h.id === player.hero_id,
-      ).localized_name;
+      const currentHero = ALL_HEROES.find((h) => h.id === player.hero_id);
+      const heroName = currentHero.localized_name;
+      const heroImageLink = `https://cdn.cloudflare.steamstatic.com/${currentHero.img}`;
       const heroStats = await getPlayerHero(player.account_id, player.hero_id);
       const playerStats = await getPlayerById(player.account_id);
 
-      return { heroName, playerStats, heroStats };
+      return { heroName, playerStats, heroStats, heroImageLink };
     }),
   );
 
   const currentDireHeroes = await Promise.all(
     currentDirePlayers.map(async (player) => {
-      const heroName = ALL_HEROES.find(
-        (h) => h.id === player.hero_id,
-      ).localized_name;
+      const currentHero = ALL_HEROES.find((h) => h.id === player.hero_id);
+      const heroName = currentHero.localized_name;
+      const heroImageLink = `https://cdn.cloudflare.steamstatic.com/${currentHero.img}`;
       const heroStats = await getPlayerHero(player.account_id, player.hero_id);
       const playerStats = await getPlayerById(player.account_id);
 
-      return { heroName, playerStats, heroStats };
+      return { heroName, playerStats, heroStats, heroImageLink };
     }),
   );
 
@@ -59,8 +59,11 @@ const getDotaMatchAnalytics = async (match) => {
     return 100 / hero.heroStats.heroIndex + acc;
   }, 0);
 
-  const radiantStats = +radiantWinRate * 0.8 + radiantHerosPopular * 0.2;
-  const direStats = +direWinRate * 0.8 + direHerosPopular * 0.2;
+  const radiantStats = (
+    +radiantWinRate * 0.8 +
+    radiantHerosPopular * 0.2
+  ).toFixed(0);
+  const direStats = (+direWinRate * 0.8 + direHerosPopular * 0.2).toFixed(0);
 
   return {
     team_name_radiant,

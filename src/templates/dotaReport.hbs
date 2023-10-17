@@ -8,11 +8,15 @@
     <style>
       .main-container { color: #000000; flex-direction: column;
       background-color:#ffffff; font-family: Arial, Helvetica, sans-serif;
-      font-weight: bold; box-sizing: border-box; } .match-title { text-align:
-      center; font-size: 24px } .awesome { color: #1976d2; font-size: 20px; }
-      .good { color: #4caf50; font-size: 20px; } .normal { color: grey;
-      font-size: 20px; } .bad { color: #ff9800; font-size: 20px; } .awful {
-      color: red; font-size: 20px; }
+      font-weight: bold; box-sizing: border-box; }
+      .match-title { text-align: center; font-size: 24px }
+      .hero { display: flex; justify-content: space-between; align-items: center; }
+      .hero-img { height: 24px; margin-left: 4px; }
+      .awesome { color: #1976d2; font-size: 20px; }
+      .good { color: #4caf50; font-size: 20px; }
+      .normal { color: grey; font-size: 20px; }
+      .bad { color: #ff9800; font-size: 20px; }
+      .awful { color: red; font-size: 20px; }
     </style>
   </head>
   <body>
@@ -51,7 +55,10 @@
         {{#each currentRadiantHeroes}}
           <tr>
             <td>
-              {{heroName}}
+              <div class="hero">
+                {{heroName}}
+                <img class="hero-img" src={{heroImageLink}} />
+              </div>
             </td>
 
             {{#if (isAwesomeRank playerStats.leaderboard_rank)}}
