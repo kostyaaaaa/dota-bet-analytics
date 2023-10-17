@@ -10,7 +10,6 @@
       background-color:#ffffff; font-family: Arial, Helvetica, sans-serif;
       font-weight: bold; box-sizing: border-box; }
       .match-title { text-align: center; font-size: 24px }
-      .hero-name { vertical-align: middle; }
       .hero-img { height: 24px; margin-left: 4px; vertical-align: middle; }
       .awesome { color: #1976d2; font-size: 20px; }
       .good { color: #4caf50; font-size: 20px; }
@@ -40,8 +39,6 @@
             Hero
           </th>
           <th>
-          </th>
-          <th>
             Rank
           </th>
           <th>
@@ -56,10 +53,6 @@
         </tr>
         {{#each currentRadiantHeroes}}
           <tr>
-            <td>
-              <span class="hero-name">{{heroName}}</span>
-            </td>
-
             <td>
               <img class="hero-img" src={{heroImageLink}} />
             </td>
@@ -193,10 +186,6 @@
         </tr>
         {{#each currentDireHeroes}}
           <tr>
-             <td>
-              <span class="hero-name">{{heroName}}</span>
-            </td>
-            
             <td>
               <img class="hero-img" src={{heroImageLink}} />
             </td>
