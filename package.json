@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./src/index.js",
-    "stats": "node ./src/getAppStats.js",
-    "update": "node ./src/updateAllMatches.js",
+    "stats": "node ./src/scripts/getAppStats.js",
+    "update": "node ./src/scripts/updateAllMatches.js",
     "prettier": "prettier --write './src/**/*.js'",
     "prepare": "husky install"
   },
@@ -18,6 +18,7 @@
     "dotenv": "^16.0.1",
     "handlebars": "^4.7.7",
     "mongoose": "^6.6.5",
+    "node-cron": "^3.0.2",
     "nodemailer": "^6.7.5",
     "nodemon": "^2.0.16",
     "twilio": "^3.77.2"

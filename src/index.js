@@ -1,8 +1,9 @@
 const dotenv = require("dotenv");
+const cron = require("node-cron");
 dotenv.config();
 require("./connectDB");
 
-const { getLiveMatches, getMatchById } = require("./api/matches");
+const { getLiveMatches } = require("./api/matches");
 const getDotaMatchAnalytics = require("./utils/getDotaMatchAnalytics");
 const ReportService = require("./services/ReportService");
 const Logger = require("./services/loggerService");
@@ -35,15 +36,6 @@ const doHeartBeat = async () => {
               direStats: matchAnalytics.direStats,
             });
           }
-          if (match.radiant_win !== undefined && !foundedMatch.winTeam) {
-            const matchToUpdate = await getMatchById(foundedMatch.id);
-            await matchesService.updateMatchById({
-              id: foundedMatch._id,
-              winTeam: matchToUpdate.radiant_win
-                ? foundedMatch.radiantTeamName
-                : foundedMatch.direTeamName,
-            });
-          }
         }),
       );
     }
@@ -52,5 +44,7 @@ const doHeartBeat = async () => {
   }
 };
 
-doHeartBeat();
-setInterval(() => doHeartBeat(), 60000);
+cron.schedule(
+  "* * * * *", // every minute
+  doHeartBeat,
+);

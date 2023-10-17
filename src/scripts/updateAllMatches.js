@@ -1,11 +1,11 @@
 const dotenv = require("dotenv");
 dotenv.config();
-require("./connectDB");
+require("../connectDB");
 const mongoose = require("mongoose");
 
-const matchesService = require("./services/matchesService");
+const matchesService = require("../services/matchesService");
 
 mongoose.connection.on("open", async () => {
-  await matchesService.getAppStats();
+  await matchesService.updateAllMatches();
   mongoose.connection.close();
 });
