@@ -9,7 +9,7 @@ To run project in you can use:
 To get stats information please run:
 
 ```sh
-    npm run start
+    npm run stats
 ```
 
 To format the code please run:
@@ -19,6 +19,7 @@ To format the code please run:
 ```
 
 To update all matches winTeam please run:
+
 ```sh
     npm run update
 ```
